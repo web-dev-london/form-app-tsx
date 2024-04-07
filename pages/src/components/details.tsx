@@ -102,7 +102,7 @@ const Details = () => {
                         colSpan={2}
                     >
                         <Button
-                            colorScheme='brand'
+                            variant='primary'
                             size='lg'
                             w='full'
                         >

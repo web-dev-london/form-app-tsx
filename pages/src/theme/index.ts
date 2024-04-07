@@ -1,4 +1,36 @@
 import { extendTheme, theme as base, withDefaultColorScheme, withDefaultVariant } from '@chakra-ui/react';
+import { mode } from "@chakra-ui/theme-tools";
+
+const inputSelectStyles = {
+    variants: {
+        filled: {
+            field: {
+                _focus: {
+                    borderColor: 'brand.500',
+                }
+            }
+        }
+    },
+    sizes: {
+        md: {
+            field: {
+                borderRadius: 'none'
+            }
+        }
+    }
+}
+
+const checkboxSelectStyles = {
+    baseStyle: {
+        control: {
+            borderRadius: 'none',
+            _focus: {
+                ring: 2,
+                ringColor: 'brand.500'
+            }
+        }
+    }
+}
 
 const theme = extendTheme({
     colors: {
@@ -18,6 +50,32 @@ const theme = extendTheme({
     fonts: {
         heading: `Montserrat ${base.fonts?.heading}`,
         body: `Inter ${base.fonts?.body}`
+    },
+    components: {
+        Input: { ...inputSelectStyles },
+        Select: { ...inputSelectStyles },
+        Checkbox: { ...checkboxSelectStyles },
+        Button: {
+            variants: {
+                primary: ({ ...props }) => ({
+                    rounded: 'none',
+                    _focus: {
+                        ring: 2,
+                        ringColor: 'brand.500'
+                    },
+                    color: mode('white', 'grey.800')(props),
+                    backgroundColor: mode('brand.500', 'brand.400')(props),
+
+                    _hover: {
+                        backgroundColor: mode('brand.600', 'brand.500')(props),
+                    },
+
+                    _active: {
+                        backgroundColor: mode('brand.700', 'brand.400')(props),
+                    }
+                })
+            }
+        }
     }
 },
     withDefaultColorScheme({
